@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aspectj>
+    <aspects>
+        <aspect name="net.mixioc.internal.InjectAspect"/>
+    </aspects>
+    <!--<weaver options="-verbose -showWeaveInfo"></weaver>-->
+</aspectj>

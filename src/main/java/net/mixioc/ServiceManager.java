@@ -7,7 +7,6 @@ import net.mixioc.internal.ServiceListAsOneInvocationHandler;
 import net.mixioc.internal.ServiceListInvocationHandler;
 import net.mixioc.internal.ServiceRegistration;
 import net.mixioc.utils.HashMapArray;
-import org.apache.commons.lang.StringUtils;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -192,7 +191,7 @@ public class ServiceManager {
 
     private static String getAnnotationParam(Field field) {
         String value = field.getAnnotation(Inject.class).value();
-        if (StringUtils.isNotEmpty(value)) {
+        if (value != null && value.length()>0) {
             return value;
         } else {
             return null;

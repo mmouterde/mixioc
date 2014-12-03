@@ -1,0 +1,8 @@
+.idea
+classes
+target
+out
+/*.log
+*.iml
+*.log
+
