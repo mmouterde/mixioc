@@ -84,14 +84,37 @@ ParserServiceInterface parserService = ServiceManager.getService(ParserServiceIn
 ~~~java
 @Service(interfaceclazz=ParserServiceInterface.class)
 ~~~
+As you know you can not use the same Annotation more than once, so you can create your own annotation to wrap `@Service`, see the example below extracted to ExporterService.java
 
+~~~java 
+/**
+ * Alias for @Service(interfaceclazz=ExportService.class,parameters=value)
+ *
+ * @author martin_mo
+ */
+@Target({
+        ElementType.TYPE
+})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ExporterService {
+
+    String value();
+}
+~~~
+
+Then add to the service discovery process your own annotation : 
+~~~
+ ServiceManager.init();
+ //Add the annotation `ExporterService` as a Service annotation to the interface ExportService
+ ServiceManager.handleServiceAnnotedClasses(ExporterService.class, ExportService.class);
+~~~
 #### My Pojo Service is abstract ?!
 => If your pojo implement an interface by inheriting an other class, MixIoc will get the first interface of the pojo (if any) then the first of its parent etc...
 
 #### What about testing ?
 => You can Inject dependencies using this the inject method of ServiceManager and you can register mocked service.
 ~~~java
- @Before
+    @Before
     public void init(){
         ServiceManager.init();
         ServiceManager.inject(handler);
