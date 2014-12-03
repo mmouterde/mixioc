@@ -38,7 +38,7 @@ public class ServiceManager {
         handleServiceAnnotedClasses(Service.class, null);
     }
 
-    protected static void handleServiceAnnotedClasses(Class annotationClass, Class defaultInterface) {
+    public static void handleServiceAnnotedClasses(Class annotationClass, Class defaultInterface) {
 
         Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(annotationClass);
 
