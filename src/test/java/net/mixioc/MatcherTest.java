@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class ServiceRegistrationTest {
+public class MatcherTest {
 
     @Test
     public void computeMatcher() {
