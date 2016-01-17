@@ -61,6 +61,7 @@ Note : There is a exception. You can directly use @Inject on a `org.slf4j.Logger
 - add dependency to MixIoC
 - on startup call `ServiceManager.init("net.your.package.root")` This will collect by reflection all @Service annoted from this package root.
 - If you use @Inject, add the JVM argument `-javaagent:{path\to\mixioc-*.jar}=net.your.package.root` This will inject on constructor call each @Inject annoted properties.
+- (optionnal) you can extend ServiceManager. To make MixIoC use your custom ServiceManager add -DCustomServiceManager=net/your/package/YourClassExtendingServiceManager
 
 ### FAQ
 

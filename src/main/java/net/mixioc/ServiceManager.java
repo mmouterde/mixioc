@@ -37,9 +37,12 @@ public class ServiceManager {
         handleServiceAnnotedClasses(Service.class, null);
     }
 
-    public static void handleServiceAnnotedClasses(Class annotationClass, Class defaultInterface) {
+    public static void handleServiceAnnotedClasses(Class annotationClass, Class defaultInterface){
+        handleServiceAnnotedClasses(reflections,annotationClass,defaultInterface);
+    }
 
-        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(annotationClass);
+    public static void handleServiceAnnotedClasses(Reflections reflexion, Class annotationClass, Class defaultInterface) {
+        Set<Class<?>> annotated = reflexion.getTypesAnnotatedWith(annotationClass);
 
         for (Class aClass : annotated) {
             Object service;

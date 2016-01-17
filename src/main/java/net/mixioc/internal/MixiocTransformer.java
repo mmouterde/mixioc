@@ -77,7 +77,12 @@ public class MixiocTransformer implements ClassFileTransformer, Opcodes {
                     instructionList.add(currentNode);
                     if (currentNode.getOpcode() == Opcodes.INVOKESPECIAL) {
                         instructionList.add(new VarInsnNode(Opcodes.ALOAD, 0));
-                        instructionList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "net/redige/util/serviceapi/ServiceManager", "inject", "(Ljava/lang/Object;)V"));
+                        String customeServiceManager = System.getProperty("CustomServiceManager");
+                        if (customeServiceManager != null && customeServiceManager.length() > 0) {
+                            instructionList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, customeServiceManager, "inject", "(Ljava/lang/Object;)V"));
+                        } else {
+                            instructionList.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "net/mixioc/ServiceManager", "inject", "(Ljava/lang/Object;)V"));
+                        }
                     }
                 }
                 methodNode.instructions.clear();
